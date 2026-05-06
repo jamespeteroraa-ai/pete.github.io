@@ -1,0 +1,227 @@
+<!doctype html>
+<!-- Simple Valentine Letter Website
+     - Light pink background
+     - Animated pink tulip SVGs (acts like GIFs but vector & lightweight)
+     - Responsive, accessible, single-file HTML/CSS/JS
+     Save as index.html and open locally.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>A Valentine Letter</title>
+  <meta name="description" content="A simple Valentine letter page with animated pink tulips">
+
+  <style>
+    /* Theme colors */
+    :root{--bg:#fff0f6;--card:#fff;--accent:#ff6b95;--muted:#6b5360}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial}
+    body{background:var(--bg);display:flex;align-items:flex-start;justify-content:center;padding:24px 16px 40px;min-height:100vh}
+
+    /* Layout */
+    .card{max-width:880px;width:100%;background:var(--card);border-radius:16px;padding:28px;box-shadow:0 10px 30px rgba(182,110,139,0.12);border:1px solid rgba(255,107,149,0.08)}
+    header{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px}
+    .logo{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#ffd1e6,#ff9fc1);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff}
+    .header-text{margin-top:8px}
+    h1{font-family:'Dancing Script',cursive,serif;font-size:2rem;margin:6px 0 0;color:var(--accent);line-height:1.05}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+
+    /* Tulip + Rose row (tighter grouping) */
+    .tulips{display:flex;gap:8px;align-items:flex-end;justify-content:center;margin:10px 0;flex-wrap:wrap}
+    .tulip, .rose{width:84px;height:120px;display:flex;align-items:flex-end;justify-content:center;transform-origin:center bottom}
+    .tulip svg, .rose svg{width:100%;height:100%;max-width:100%;display:block}
+    .rose svg .bud{fill:#ffb1c9}
+    .rose svg .petal{fill:#ff89b3}
+    .rose svg .stem{fill:#5fa86b}
+    .rose .bloom{animation:bloomRose 3.2s ease-in-out infinite}
+    @keyframes bloomRose{0%{transform:scale(0.94)}50%{transform:scale(1)}100%{transform:scale(0.94)}}
+
+    /* Letter content */
+    .letter{background:linear-gradient(180deg,#fff,#fff8fb);padding:18px;border-radius:12px;border:1px solid rgba(255,107,149,0.04)}
+    .letter p{margin:0 0 10px;color:#4a2f3e}
+    .signature{margin-top:12px;font-weight:700;color:var(--accent)}
+
+    /* Soft animation: sway & bloom */
+    .sway{transform-origin:50% 100%;animation:sway 3.6s ease-in-out infinite}
+    .bloom{transform-origin:50% 90%;animation:bloom 2.8s ease-in-out infinite}
+    @keyframes sway{0%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}100%{transform:rotate(-4deg)}}
+    @keyframes bloom{0%{transform:scaleY(0.86)}50%{transform:scaleY(1)}100%{transform:scaleY(0.86)}}
+
+    /* Responsive adjustments (mobile-first tweaks) */
+    @media (max-width:640px){
+      body{padding:12px}
+      .card{padding:16px;border-radius:12px}
+      header{flex-direction:column;align-items:center;text-align:center;gap:8px}
+      .logo{width:56px;height:56px;font-size:24px}
+      .header-text{margin-top:4px}
+      h1{font-size:1.6rem}
+      p.lead{font-size:0.95rem}
+      /* Flowers scale and tighten */
+      .tulips{gap:6px;margin:8px 0}
+      .tulip,.rose{width:64px;height:96px}
+      .tulip svg, .rose svg{width:100%;height:auto}
+      .letter{padding:12px}
+    }
+
+    @media (max-width:420px){
+      h1{font-size:1.4rem}
+      .card{padding:12px}
+      .logo{width:48px;height:48px}
+      .tulip,.rose{width:56px;height:84px}
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion:reduce){.sway,.bloom{animation:none}}
+  </style>
+
+  <!-- Optional decorative font (will load if online) -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="card" role="main" aria-labelledby="title">
+    <header>
+      <div class="logo" aria-hidden="true">❤</div>
+      <div>
+        <h1 id="title"> Basta Love Letter to hehe :)</h1>
+        <p class="lead">For my PemPem.</p>
+      </div>
+    </header>
+
+    <!-- Animated tulips and roses (SVGs) -->
+    <div class="tulips" aria-hidden="false">
+      <!-- Tulip 1 (updated style: outlined petals & shaded leaves) -->
+      <div class="tulip">
+        <svg class="sway" viewBox="0 0 64 96" width="96" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pink tulip">
+          <!-- stem -->
+          <path d="M34 34 C34 50,34 74,34 90" stroke="#2f7a3f" stroke-width="3" stroke-linecap="round" fill="none" />
+          <!-- leaf -->
+          <path d="M30 56 C18 62,14 76,32 74 C28 66,30 60,30 56 Z" fill="#6fbf6a" stroke="#2f7a3f" stroke-width="1"/>
+          <!-- petals (outlined & layered) -->
+          <g class="bloom">
+            <path d="M32 10 C24 2,12 8,16 22 C18 30,26 28,32 24 C38 28,46 30,48 22 C52 8,40 2,32 10 Z" fill="#ffb0c9" stroke="#3a2b2b" stroke-width="1.6"/>
+            <path d="M32 14 C28 10,22 12,26 20 C30 24,32 22,32 22" fill="#e67a95" opacity="0.32"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Rose 1 -->
+      <div class="rose">
+        <svg viewBox="0 0 64 96" width="96" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pink rose">
+          <g class="bloom">
+            <path class="petal" d="M32 18 C26 12, 18 10, 16 18 C14 26, 24 28, 30 26 C36 24, 44 22, 42 16 C40 10, 34 8, 32 18 Z" />
+            <path class="bud" d="M28 22 C26 26, 30 30, 34 28 C36 26, 32 24, 28 22 Z" />
+          </g>
+          <path class="stem" d="M32 36 v42" stroke="#4e8b4e" stroke-width="2" stroke-linecap="round" fill="none"/>
+          <path d="M32 56 C18 64, 14 76, 32 74" fill="#5fa86b"/>
+        </svg>
+      </div>
+
+      <!-- Tulip 2 (lighter pink with outline) -->
+      <div class="tulip">
+        <svg class="sway" viewBox="0 0 64 96" width="96" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Light pink tulip">
+          <path d="M34 36 C34 52,34 76,34 92" stroke="#2f7a3f" stroke-width="3" stroke-linecap="round" fill="none" />
+          <path d="M28 58 C16 64,12 78,30 76 C26 68,28 62,28 58 Z" fill="#78c77a" stroke="#2f7a3f" stroke-width="1"/>
+          <g class="bloom">
+            <path d="M32 12 C22 4,10 10,14 24 C16 32,26 30,32 26 C38 30,48 32,50 24 C54 10,42 4,32 12 Z" fill="#ffd6e3" stroke="#3a2b2b" stroke-width="1.4"/>
+            <path d="M32 16 C28 12,20 14,24 22 C28 26,32 24,32 24" fill="#ff9fb6" opacity="0.28"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Rose 2 -->
+      <div class="rose">
+        <svg viewBox="0 0 64 96" width="96" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Light rose">
+          <g class="bloom">
+            <path class="petal" d="M34 16 C28 10, 20 10, 18 18 C16 26, 26 28, 32 26 C38 24, 46 22, 44 16 C42 10, 36 8, 34 16 Z" />
+            <path class="bud" d="M30 20 C28 24, 32 28, 36 26 C38 24, 34 22, 30 20 Z" />
+          </g>
+          <path class="stem" d="M34 36 v40" stroke="#4e8b4e" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Tulip 3 (deeper pink, defined outline) -->
+      <div class="tulip">
+        <svg class="sway" viewBox="0 0 64 96" width="96" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Deep pink tulip">
+          <path d="M34 32 C34 50,34 76,34 92" stroke="#2f7a3f" stroke-width="3" stroke-linecap="round" fill="none" />
+          <path d="M30 56 C12 62,10 78,30 76 C28 68,30 62,30 56 Z" fill="#67b86b" stroke="#2f7a3f" stroke-width="1"/>
+          <g class="bloom">
+            <path d="M32 8 C22 -4,8 6,14 26 C16 32,26 30,32 22 C38 30,50 26,50 22 C56 8,40 -4,32 8 Z" fill="#ff80b2" stroke="#3a2b2b" stroke-width="1.6"/>
+            <path d="M32 12 C28 8,20 12,24 20 C28 24,32 22,32 22" fill="#e65f94" opacity="0.34"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Rose 3 -->
+      <div class="rose">
+        <svg viewBox="0 0 64 96" width="84" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Deep rose">
+          <g class="bloom">
+            <path class="petal" d="M32 14 C26 8, 18 8, 16 16 C14 24, 24 26, 30 24 C36 22, 44 20, 42 14 C40 8, 34 6, 32 14 Z" />
+            <path class="bud" d="M28 18 C26 22, 30 26, 34 24 C36 22, 32 20, 28 18 Z" />
+          </g>
+          <path class="stem" d="M32 36 v42" stroke="#4e8b4e" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Extra flowers: Tulip 4 -->
+      <div class="tulip">
+        <svg class="sway" viewBox="0 0 64 96" width="84" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Soft pink tulip">
+          <path d="M33 34 C33 50,33 76,33 92" stroke="#28693a" stroke-width="2.6" stroke-linecap="round" fill="none" />
+          <path d="M29 58 C18 64,14 76,30 76 C28 68,30 62,29 58 Z" fill="#6fbf6a" stroke="#28693a" stroke-width="0.9"/>
+          <g class="bloom">
+            <path d="M32 12 C24 4,14 10,18 22 C20 30,28 28,32 24 C36 28,44 30,46 22 C50 10,38 4,32 12 Z" fill="#ffc0d6" stroke="#3a2b2b" stroke-width="1.2"/>
+            <path d="M32 15 C28 12,22 14,26 20 C30 24,32 22,32 22" fill="#ff8aa6" opacity="0.26"/>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Extra flowers: Rose 4 -->
+      <div class="rose">
+        <svg viewBox="0 0 64 96" width="84" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Small rose">
+          <g class="bloom">
+            <path class="petal" d="M32 18 C26 12,20 12,18 18 C16 24,24 26,30 24 C36 22,42 20,40 16 C38 12,34 10,32 18 Z" />
+            <path class="bud" d="M30 20 C28 24,32 26,34 24 C36 22,32 20,30 20 Z" />
+          </g>
+          <path class="stem" d="M32 36 v40" stroke="#4e8b4e" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+
+      <!-- Extra flowers: Tulip 5 -->
+      <div class="tulip">
+        <svg class="sway" viewBox="0 0 64 96" width="84" height="120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Blush tulip">
+          <path d="M34 36 C34 52,34 76,34 92" stroke="#2f7a3f" stroke-width="2.6" stroke-linecap="round" fill="none" />
+          <path d="M30 58 C16 64,12 78,30 76 C28 68,30 62,30 58 Z" fill="#7acb7c" stroke="#2f7a3f" stroke-width="0.9"/>
+          <g class="bloom">
+            <path d="M32 10 C24 2,12 8,16 22 C18 30,26 28,32 24 C38 28,46 30,48 22 C52 8,40 2,32 10 Z" fill="#ffb6d0" stroke="#3a2b2b" stroke-width="1.2"/>
+            <path d="M32 13 C28 10,22 14,26 20 C30 24,32 22,32 22" fill="#ff88a9" opacity="0.24"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <!-- The letter content -->
+    <article class="letter" aria-label="Valentine letter">
+      <p>PemPemPemPem,</p>
+      <p> Good evening love, monthsary na nga pala ulit natin noh hahaha. I just want to say that i love you so much at greatful ako na nandyan ka sa buhay ko, thank you for being there for me and for loving me as well. At gusto ko rin mag sorry sa mga bagay na ginawa ko at hindi ko ginawa, looking back puro katangahan lang talaga ang naaalala kong nagawa ko para sayo. May mga bagay din akong pinagsisisihan ko na hindi ko nagawa, pero wala na eh tapos na. Sinusubukan kong maging better para sayo pero feeling ko hindi sapat yung ginagawa ko, hindi ko to sinasabi para magpaawa ko kung ano man siguro pagod lang ako ngayon kaya nasusulat ko tong mga nararamdaman at tumatakbo sa isip ko. Pero kahit ganun sana alam mong mahal na mahal kita, ikukwento ko nalang din siguro sayo dito kung ano man yung mga realization ko this past few weeks. 
+        Narealized ko na antanga ko talaga, andami kong pagkukulang sayo to the point na pati sarili ko tinanong ko kung boyfriend mo ba talaga ako. Deserve ko ba talagang mahalin mo, pumasok rin sa isip ko na makipag break sayo. Kasi sa nakikita ko diko nga nagagampanan yung part ko as boyfriend mo at naiisip ko na siguro pinagtitiisan mo lang ako, na baka ayaw mo narin pero dimo lang sinasabi. Masyado rin akong naging busy sa ibang bagay kagaya ngayon monthsary natin pero hindi manlang tayo nagkita, halos di narin pala tayo naguusap minsan. Natatakot rin akong i bring up sayo to kasi ewan haha natatakot akong mawala ka kasi wala eh mahal kita at alam kong pagsisisihan ko kapag nawala ka sakin. Ang gulo ng letter ko no haha kasing gulo ng utak ko, pero love sana alam mong mahal na mahal kita. Hindi ko man madalas sabihin, hindi ko rin alam kung naiparamdam ko ba sayo o minahal ba kita sa paraang gusto mo, 
+        pero alam ko sa sarili ko na mahal na mahal kita. Kaya naman mag stay ako sayo hanggat dimo sinasabing ayaw mo na sakin, wait parang selfish ko dun, ah basta hahahaha nababaliw si peter. Wait 3months naba tayo o 4, wala na ekis na talaga ako sayo nito. Pero love, gusto mo parin bako mag stay sayo? natatakot ako sa sagot hahaha pero please maging honest ka. Mahal kita pero wala eh alam ko ang mga pagkukulang ko, kaya hindi kita masisisi sa kung ano man ang sagot mo. Siguro hindi nga sapat na mahal lang kita, diko nga rin maalala o alam kung napasaya manlang kita sa tagal natin. Sorry kung isinulat ko to pero ito kasi talaga lang kasi talaga tumatakbo sa isip ko ngayon. Ayokong mag desisyon ng ako lang, kasi dalawa tayo dito at gusto ko ring malaman ang nararamdaman mo. 
+      </p>
+      <p>Love, sana alam mong mahal na mahal kita at nandito lang ako lagi sumusuporta sayo. Pinagdarasal ko lagi na sana lagi kang okay, nasa maayos at matupad mo ang mga pangarap mo. Wala man ako lagi sa tabi mo pero masaya ako palagi para sayo. Kung kailangan mo ng kausap nandito lang ako(wag lang pag gabing gabi na kasi baka bagsak nako nyan hehe), kung kaialangan mo ng tulong nandito ako para tulungan ka hanggat kaya ko, basta nandito lang ako lagi para sayo hahaha daming kong sinabi eh no. Goodnight Ann na love ko hehe ilove you<3</p>
+      <p class="signature">Always yours, Peter</p>
+      <p class="signature">— ❤️</p>
+    </article>
+
+    <!-- Minimal script to ensure keyboard accessibility for SVGs and nothing else -->
+    <script>
+      // Make the tulip and rose SVGs focusable for keyboard users to pause animation if desired
+      document.querySelectorAll('.tulip svg, .rose svg').forEach((svg, i)=>{
+        svg.setAttribute('tabindex','0');
+        svg.addEventListener('focus', ()=>{ svg.classList.add('paused'); svg.style.animationPlayState='paused'; });
+        svg.addEventListener('blur', ()=>{ svg.classList.remove('paused'); svg.style.animationPlayState='running'; });
+      });
+    </script>
+  </main>
+
+</body>
+</html>
